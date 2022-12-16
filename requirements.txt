@@ -1,0 +1,6 @@
+pytorch-lightning==1.5.10
+albumentations
+pandas
+scikit-learn
+torchvision
+-e . #install this as a system-level package
