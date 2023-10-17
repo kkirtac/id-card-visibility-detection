@@ -1,0 +1,6 @@
+streamlit==1.23.1
+requests==2.24.0
+requests-toolbelt==0.9.1
+opencv-python-headless==4.5.5.64
+pandas==1.5.2
+plotly

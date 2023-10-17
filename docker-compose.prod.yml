@@ -1,0 +1,20 @@
+version: '3.1'
+services:
+  fastapi:
+    build: 
+      context: .
+      dockerfile: Dockerfile.prod
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [ gpu ]
+    shm_size: 4gb
+    ports:
+      - 8000:8000
+  streamlit:
+    build: streamlit/
+    depends_on:
+      - fastapi
+    ports: 
+      - 8501:8501

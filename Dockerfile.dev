@@ -1,0 +1,17 @@
+FROM nvcr.io/nvidia/pytorch:22.02-py3
+
+# Install additional system packages and clean up apt cache aftwards
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends screen sudo && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY . .
+
+RUN pip install -r requirements.txt
+
+# Expose the ports for Jupyter Notebook and TensorBoard
+EXPOSE 8888 6006
+
+CMD ["bash", "-c", "jupyter notebook --allow-root --port=8888 --ip=0.0.0.0 --no-browser . & tensorboard --logdir=/app"]
